@@ -2,13 +2,14 @@
 #include <string>
 using namespace std;
 void PrintIntro();
+void PlayGame();
 string GetGuessAndPrintBack();
 // the entry point for our application
 int main()
 {
   PrintIntro();
-  GetGuessAndPrintBack();
-  return 0;
+  PlayGame();
+  return 0; // Exit the Application
 }
 
 // the implementation of the method
@@ -25,12 +26,21 @@ void PrintIntro()
 
 // the implementation of getGuess
 // get a guess from the player
-string GetGuessAndPrintBack()
+string GetGuess()
 {
   cout << "Please write your guess: ";
   string Guess = "";
   getline(cin, Guess);
-  // print the guess guess back to them
-  cout << "Your guess was: " << Guess;
   return Guess;
+}
+
+void PlayGame()
+{
+  constexpr int NUMBER_OF_TURNS = 5;
+  for (int i = 1; i <= NUMBER_OF_TURNS; i++)
+  {
+    string Guess = GetGuess();
+    cout << "Your guess was: " << Guess;
+    cout << endl;
+  }
 }
