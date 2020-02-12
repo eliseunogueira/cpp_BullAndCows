@@ -8,10 +8,12 @@ string GetGuessAndPrintBack();
 // the entry point for our application
 int main()
 {
-  PrintIntro();
-  PlayGame();
-  AskToPlayAgain();
-  return 0; // Exit the Application
+  do
+  {
+    PrintIntro();
+    PlayGame();
+  } while (AskToPlayAgain() == true);
+  return 0;
 }
 
 // the implementation of the method
@@ -49,7 +51,7 @@ void PlayGame()
 
 bool AskToPlayAgain()
 {
-  cout << "Do you want to play again? ";
+  cout << "Do you want to play again? (Y/N) ";
   string Response = "";
   getline(cin, Response);
   return (Response[0] == 'y' || Response[0] == 'Y');
