@@ -1,10 +1,13 @@
 #include <iostream>
 #include <string>
-using namespace std;
+#include "FBullCowGame.h"
+
 void PrintIntro();
 void PlayGame();
 bool AskToPlayAgain();
-string GetGuessAndPrintBack();
+std::string GetGuessAndPrintBack();
+FBullCowGame BCGame;
+// Instantiate a new Game
 // the entry point for our application
 int main()
 {
@@ -21,38 +24,40 @@ void PrintIntro()
 {
   // Introduce the game
   constexpr int WORLD_LENGTH = 5;
-  cout << "Welcome to Bulls and Cows, a fun word game.\n";
-  cout << "Can you guess the " << WORLD_LENGTH;
-  cout << " letter isogram I'm thingking of\n";
-  cout << endl;
+  std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
+  std::cout << "Can you guess the " << WORLD_LENGTH;
+  std::cout << " letter isogram I'm thingking of\n";
+  std::cout << std::endl;
   return;
 }
 
 // the implementation of getGuess
 // get a guess from the player
-string GetGuess()
+std::string GetGuess()
 {
-  cout << "Please write your guess: ";
-  string Guess = "";
-  getline(cin, Guess);
+  int CurrentTry = BCGame.GetCurrentTry();
+
+  std::cout << "Try " << CurrentTry << " Enter your guess: ";
+  std::string Guess = "";
+  std::getline(std::cin, Guess);
   return Guess;
 }
 
 void PlayGame()
 {
-  constexpr int NUMBER_OF_TURNS = 5;
-  for (int i = 1; i <= NUMBER_OF_TURNS; i++)
+  int MaxTries = BCGame.GetMaxTries();
+  for (int i = 1; i <= MaxTries; i++)
   {
-    string Guess = GetGuess();
-    cout << "Your guess was: " << Guess;
-    cout << endl;
+    std::string Guess = GetGuess();
+    std::cout << "Your guess was: " << Guess;
+    std::cout << std::endl;
   }
 }
 
 bool AskToPlayAgain()
 {
-  cout << "Do you want to play again? (Y/N) ";
-  string Response = "";
-  getline(cin, Response);
+  std::cout << "Do you want to play again? (Y/N) ";
+  std::string Response = "";
+  std::getline(std::cin, Response);
   return (Response[0] == 'y' || Response[0] == 'Y');
 }
