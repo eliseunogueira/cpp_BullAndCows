@@ -1,11 +1,18 @@
+/*
+This is the console executable, that makes use of the BullCow class
+This acts as the view in a MVC pattern, and is responsible for all
+user interaction. For game logic see the FBullCowGame class.
+*/
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
+using FText = std::string;
+using int32 = int;
 
 void PrintIntro();
 void PlayGame();
 bool AskToPlayAgain();
-std::string GetGuessAndPrintBack();
+FText GetGuessAndPrintBack();
 FBullCowGame BCGame;
 // Instantiate a new Game
 // the entry point for our application
@@ -23,7 +30,7 @@ int main()
 void PrintIntro()
 {
   // Introduce the game
-  constexpr int WORLD_LENGTH = 5;
+  constexpr int32 WORLD_LENGTH = 5;
   std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
   std::cout << "Can you guess the " << WORLD_LENGTH;
   std::cout << " letter isogram I'm thingking of\n";
@@ -46,10 +53,10 @@ std::string GetGuess()
 void PlayGame()
 {
   BCGame.Reset();
-  int MaxTries = BCGame.GetMaxTries();
-  for (int i = 1; i <= MaxTries; i++)
+  int32 MaxTries = BCGame.GetMaxTries();
+  for (int32 i = 1; i <= MaxTries; i++)
   {
-    std::string Guess = GetGuess();
+    FText Guess = GetGuess();
     std::cout << "Your guess was: " << Guess;
     std::cout << std::endl;
   }
